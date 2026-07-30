@@ -1,75 +1,40 @@
-# React + TypeScript + Vite
+# MisGastos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¿A dónde se fue la quincena? MisGastos es una app para dejar de preguntártelo.
 
-Currently, two official plugins are available:
+Es una PWA de finanzas personales pensada para el día a día: registrás un gasto en dos toques, ves en un vistazo cuánto te queda del mes, y le hacés seguimiento de verdad a esas deudas y suscripciones que normalmente se te olvidan hasta que ya es tarde.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Se instala directo desde el navegador (sin App Store ni Play Store), funciona offline y se ve igual de bien en modo oscuro que en modo claro.
 
-## React Compiler
+## Qué podés hacer
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dashboard** con balance del mes, tendencia de ingresos vs. gastos y desglose de gastos por categoría — todo con datos reales, nada de números de relleno.
+- **Movimientos**: cargá gastos e ingresos, buscá y filtrá por tipo o categoría.
+- **Categorías** propias, con color e ícono, y un vistazo de qué porcentaje de tu gasto se va en cada una.
+- **Deudas** con barra de progreso, historial de abonos y la posibilidad de marcar un pago como "bonificación" (esos abonos extra que hacés fuera de tu mensualidad).
+- **Suscripciones** con alertas de vencimiento por color, para que ningún cobro te agarre desprevenido.
+- **Modo oscuro / claro**, con la preferencia de tu sistema como punto de partida.
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Vite · React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui · Supabase (Postgres + Auth) · TanStack Query · Recharts · React Hook Form + Zod
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Correrlo en local
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev      # servidor de desarrollo
+npm run build    # build de producción
+npm run preview  # servir el build localmente
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Necesitás un archivo `.env.local` en la raíz con las credenciales de tu proyecto de Supabase:
 
 ```
+VITE_SUPABASE_URL=tu-url-de-supabase
+VITE_SUPABASE_ANON_KEY=tu-anon-key
+```
+
+## Estado
+
+Proyecto personal en desarrollo activo.
